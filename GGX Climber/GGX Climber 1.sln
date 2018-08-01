@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{3B13A70E-AD06-A115-A4DC-59D7D59833A9}") = "GGX Climber 1", "Assembly-CSharp.csproj", "{0D9E13E0-A0EC-A6BE-1E08-C995556935C6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0D9E13E0-A0EC-A6BE-1E08-C995556935C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D9E13E0-A0EC-A6BE-1E08-C995556935C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D9E13E0-A0EC-A6BE-1E08-C995556935C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D9E13E0-A0EC-A6BE-1E08-C995556935C6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
