@@ -1,0 +1,30 @@
+<% provide(:title, "Report")%>
+<h1 class = "center">Reports#show</h1>
+<div class="jumbotron">
+  <h3><%= @reports.report_title %></h3>
+  <small><%= @reports.report_date %></small><br>
+  <small>created by <%= @reports.user.username %></small><br>
+  <%= @reports.report_description%> <br><br>
+  <% @pictures.each do |pictures| %>
+      <div class="gallery">
+        <%= link_to pictures.picture.url do %>
+          <%= image_tag pictures.picture.url(:report_picture) if pictures.picture? %>
+        <% end %>
+      </div>
+  <% end %>
+
+  <div class="clearfix"></div>
+  <br>
+
+  <%= link_to 'Back', root_path %> |
+
+  <% if current_user.id == @reports.user.id %>
+    <%= link_to 'Edit', edit_report_path(@reports) %> |
+  <% end %>
+
+  <% if current_user.is_admin? %>
+    <%= link_to 'Delete', @reports, method: :delete,
+                  data: {confirm: "You sure?"} %>
+  <% end %>
+</div>
+

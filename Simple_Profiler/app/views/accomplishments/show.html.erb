@@ -1,0 +1,30 @@
+<% provide(:title, "Accomplishment") %>
+<div class="container">
+  <div class="well">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row"><h1 class="text-center" ><%= @accomplishment.title %></h1></div>
+        <div class="">
+          <hr>
+          <small><%= @accomplishment.date_of_award %></small><br>
+          <small><%= @accomplishment.type_of_award %></small><br>
+          <small><strong><%= full_name(@accomplishment.profile.user.first_name, @accomplishment.profile.user.last_name) %></strong></small>
+          <hr>
+          <p class="text-justify">
+            <%= @accomplishment.award_description %>
+          </p>
+        </div>
+        <h2 class="text-center" >Gallery</h2>
+        <br>
+        <% @pictures.each do |pictures| %>
+          <div class="gallery">
+            <%= link_to pictures.award_picture.url do %>
+              <%= image_tag pictures.award_picture.url(:in_profile), class: 'on_training' if pictures.award_picture? %>
+            <% end %>
+          </div>
+        <% end %>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+</div>

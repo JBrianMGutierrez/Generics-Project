@@ -1,0 +1,51 @@
+<% provide(:title, "Accounts")%>
+<div class="jumbotron" style="background: rgba(245,245,245,0.7)">
+  <h4 class="center" style="color:#272287; text-align: center"> List of User's Account </h4>
+  <h2>Accounts (<%= @user.count %>)</h2>
+  <% if @user.any? %>
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First name</th>
+      <th scope="col">Last name</th>
+      <th scope="col">Username</th>
+      <th scope="col">Email</th>
+      <th scope="col">Approved</th>
+      <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @user.each do |user| %>
+    <tr>
+      <th scope="row"><%= user.id %></th>
+      <td><%= user.first_name %></td>
+      <td><%= user.last_name %></td>
+      <td><%= user.username %></td>
+      <td><%= user.email %></td>
+      <td>
+        <% if user.approved? %>
+          Yes
+        <% else %>
+          No
+        <% end %>
+      </td>
+      <td>
+        <% if current_user != user %>
+          <%= link_to 'Destroy', admin_destroy_path(user), method: :delete, data: { confirm: "You sure?" } %>
+          <% unless user.is_admin? %>
+            | <%= link_to 'Admin', make_admin_path(user)%>
+          <% end %>
+          <% unless user.approved? %>
+            | <%= link_to 'Approve', approved_user_path(user)%>
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+    <%= will_paginate @user %>
+  <% end %>
+    </tbody>
+  </table>
+
+</div>

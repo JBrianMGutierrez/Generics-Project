@@ -1,0 +1,36 @@
+<% provide(:title, "Login")%>
+<%= render 'layouts/messages' %>
+<div class="container" >
+  <div class="col-md-4 col-md-offset-4">
+    <section>
+      <div class="panel panel-default top caja" style="background: rgba(245,245,245,0.7)">
+        <div class="panel-body">
+          <h3 class="text-center" style="color:#272287">L O G I N</h3>
+          <br>
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="input-group">
+              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user" aria-hidden="true"></i></span>
+              <%= f.text_field :login, autofocus: true, class: 'form-control', :placeholder => 'Username or Email' %>
+            </div>
+            <br>
+            <div class="input-group">
+              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-key" aria-hidden="true"></i></span>
+              <%= f.password_field :password, autocomplete: 'off', class: 'form-control', :placeholder => 'Password' %>
+            </div>
+            <br>
+            <% if devise_mapping.rememberable? -%>
+              <div class="field">
+                <%= f.check_box :remember_me %>
+                <%= f.label :'Remember my password' %>
+              </div>
+            <% end -%>
+            <br>
+            <%= f.submit "Log in", class: 'btn btn-primary btn-block' %>
+          <% end %>
+          <%= render "users/shared/links" %>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

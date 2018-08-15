@@ -1,0 +1,46 @@
+<% provide(:title, "Edit Report") %>
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-8 col-md-offset-2">
+      <%= form_for @reports, url: edit_report_path(@reports), html: { multipart: true }  do |f| %>
+        <%= render 'reports/shared/error_messages' %>
+        <legend class="text-center">Edit Report details</legend>
+        <fieldset>
+          <legend>Report Details</legend>
+
+          <div class="form-group col-md-6">
+            <%= f.label :'Title' %>
+            <%= f.text_field :report_title, class: 'form-control', :placeholder => 'Title of your Report', id: 'report_title' %>
+          </div>
+
+          <div class="form-group col-md-6">
+            <%= f.label :'Date' %>
+            <div class='input-group date' id='datetimepicker1'>
+              <%= f.text_field :report_date, class: 'form-control', class: 'form-control' %>
+              <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group col-md-12">
+            <%= f.label :'Address' %>
+            <%= f.text_field :report_location, class: 'form-control', :placeholder => 'Address of the scene' %>
+          </div>
+
+          <div class="form-group col-md-12">
+            <%= f.label :'Description' %>
+            <%= f.text_area :report_description, class: 'form-control', :placeholder => 'Description of the scene...' %>
+          </div>
+
+        </fieldset>
+        <div class="form-group">
+          <div class="col-md-12">
+            <%= f.submit 'Submit Report', class: 'btn btn-primary' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-6 col-md-6">
+    <div class="form-group">
+      <%= f.text_field :speaker, autofocus: true,
+                       class: 'form-control input-lg',
+                       placeholder: 'Name of Training' %>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-6 col-md-6">
+    <div class="form-group">
+      <%= f.text_field :price, autofocus: true,
+                       class: 'form-control input-lg',
+                       placeholder: 'In PH currency...' %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-6 col-md-6">
+    <div class="form-group">
+      <%= f.date_field :date_of_training, autofocus: true,
+                       class: 'form-control input-lg', placeholder: 'mm/dd/yy' %>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-6 col-md-6">
+    <div class="form-group">
+      <%= f.select :type_of_training, [['Boot camp'], ['Online'],
+                                       ['Seminar'], ['Activity'],
+                                       ['Business']],{} , {autofocus: true,
+                   class: 'form-control input-lg', placeholder: 'Select one!'} %>
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <%= f.text_area :training_description, autofocus: true,
+                   class: 'form-control input-lg', placeholder: 'Describe the training' %>
+</div>
+
+<div class="form-group">
+
+</div>
+<hr class="colorgraph">

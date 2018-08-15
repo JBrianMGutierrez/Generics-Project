@@ -1,0 +1,195 @@
+<% provide(:title, "Home") %>
+
+<div class="container">
+  <div class="toppad  pull-right ">
+    <br>
+    <%= link_to 'Back', 'javascript:history.back()' %> |
+    <%= link_to 'Go to profile', current_user_page_path %>
+    <br>
+    <p class=" text-info"><%= @datetime.strftime('%-d/%-m/%y: %I:%M %p') %> </p>
+  </div>
+  <h1>User ID: <%= @user.id %></h1>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div id="user-profile-2" class="user-profile">
+        <div class="tabbable">
+          <ul class="nav nav-tabs padding-18">
+            <li class="active">
+              <a data-toggle="tab" href="#home">
+                <i class="green ace-icon fa fa-user bigger-120"></i>
+                Profile
+              </a>
+            </li>
+
+            <li>
+              <a data-toggle="tab" href="#training">
+                <i class="orange ace-icon fa fa-rss bigger-120"></i>
+                Training
+              </a>
+            </li>
+
+            <li>
+              <a data-toggle="tab" href="#award">
+                <i class="pink ace-icon fa fa-picture-o bigger-120"></i>
+                Achievements
+              </a>
+            </li>
+          </ul>
+          <div class="tab-content no-border padding-24">
+            <div id="home" class="tab-pane in active">
+              <div class="row">
+                <div class="col-xs-12 col-sm-3 center">
+      							<span class="profile-picture">
+                        <%= image_tag @profile.profile_picture.url(:in_profile), class: 'editable img-responsive',
+                                      alt: ' Avatar', id: 'avatar2' %>
+      							</span>
+
+                  <div class="space space-4"></div>
+                </div>
+
+                <div class="col-xs-12 col-sm-9">
+                  <h4 class="blue">
+                    <span class="middle"><%= full_name(@user.first_name, @user.last_name) %></span>
+                  </h4>
+
+                  <div class="profile-user-info">
+                    <div class="profile-info-row">
+                      <div class="profile-info-name"> Username</div>
+                      <div class="profile-info-value">
+                        <span><%= @user.username %></span>
+                      </div>
+                    </div>
+
+                    <div class="profile-info-row">
+                      <div class="profile-info-name"> Date of Birth</div>
+                      <div class="profile-info-value">
+                        <span><%= @profile.nil? ? ' ' : @profile.date_of_birth %></span>
+                      </div>
+                    </div>
+
+                    <!--
+                    <div class="profile-info-row">
+                      <div class="profile-info-name"> Location</div>
+                      <div class="profile-info-value">
+                        <i class="fa fa-map-marker light-orange bigger-110"></i>
+                      </div>
+                    </div>
+                    -->
+
+                    <div class="profile-info-row">
+                      <div class="profile-info-name"> Civil Status</div>
+                      <div class="profile-info-value">
+                        <span><%= @profile.nil? ? ' ' : @profile.civil_status %></span>
+                      </div>
+                    </div>
+
+                    <div class="profile-info-row">
+                      <div class="profile-info-name"> Gender</div>
+
+                      <div class="profile-info-value">
+                        <span><%= @profile.nil? ? ' ' : @profile.gender %></span>
+                      </div>
+                    </div>
+
+                    <div class="profile-info-row">
+                      <div class="profile-info-name"> Contact</div>
+
+                      <div class="profile-info-value">
+                        <span><%= @profile.nil? ? ' ' : @profile.contact_number %></span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="hr hr-8 dotted"></div>
+
+                  <div class="profile-user-info">
+                    <div class="profile-info-row">
+                      <div class="profile-info-name"> College</div>
+
+                      <div class="profile-info-value">
+                        <span><%= @profile.nil? ? ' ' : @profile.education %></span>
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- /.col -->
+              </div><!-- /.row -->
+
+              <div class="space-20"></div>
+
+              <div class="row">
+                <div>
+                  <div class="widget-box transparent">
+                    <div class="widget-header widget-header-small">
+                      <h4 class="widget-title smaller">
+                        <i class="ace-icon fa fa-check-square-o bigger-110"></i>
+                        Biography
+                      </h4>
+                    </div>
+
+                    <div class="widget-body">
+                      <div class="widget-main">
+                        <p>
+                          <%= @profile.nil? ? ' ' : @profile.biography %>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- /#home -->
+
+            <!-- /#Training -->
+            <div id="training" class="tab-pane">
+              <div class="profile-feed row">
+                <% @training.each do |training| %>
+                  <div class="profile-activity clearfix">
+                    <div>
+                      <img class="pull-left" alt="Alex Doe's avatar" src="http://bootdey.com/img/Content/avatar/avatar1.png">
+                      <%= link_to training.speaker , training_path(training) %><br>
+                      <%= training.type_of_training %><br>
+                      <div class="time">
+                        <i class="ace-icon fa fa-clock-o bigger-110"></i>
+                        <%= training.date_of_training %>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+                <%= will_paginate @training %>
+              </div>
+              <br>
+              <div class="space-12"></div>
+            </div>
+
+            <!-- /#award -->
+            <div id="award" class="tab-pane">
+              <div class="space-12"></div>
+              <br>
+              <% @accomplishment.each do |award| %>
+                <ul class="ace-thumbnails">
+                  <li>
+                    <a href="#" data-rel="colorbox">
+                      <img alt="150x150" src="http://lorempixel.com/200/200/nature/1/">
+                      <div class="text">
+                        <div class="inner"><%= award.title %></div>
+                      </div>
+                    </a>
+
+                    <div class="tools tools-bottom">
+                      <%= link_to accomplishment_path(award) do %>
+                        <i class="ace-icon fa fa-link"></i>
+                      <% end %>
+                    </div>
+                  </li>
+                </ul>
+              <% end %>
+            </div>
+            </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>

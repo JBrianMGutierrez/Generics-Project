@@ -1,0 +1,27 @@
+<% provide(:title, "Training") %>
+<div class="container">
+  <div class="well">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row"><h1 class="text-center" ><%= @training.speaker %></h1></div>
+        <div class="">
+          <hr>
+          <small><%= @training.date_of_training %></small><br>
+          <small><%= @training.type_of_training %></small><br>
+          <small><%= @training.price %></small><br>
+          <small><strong><%= full_name(@training.profile.user.first_name, @training.profile.user.last_name) %></strong></small>
+          <hr>
+          <p class="text-justify">
+            <%= @training.training_description %>
+          </p>
+        </div>
+        <div class="on_training">
+          <%= link_to @training.certificate.url, class: 'center' do %>
+            <%= image_tag @training.certificate.url(:on_show), class: 'on_training' if @training.certificate? %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

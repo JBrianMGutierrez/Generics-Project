@@ -1,0 +1,28 @@
+<hr class="colorgraph">
+<div class="form-group">
+  <%= f.text_field :title, autofocus: true,
+                   class: 'form-control input-lg',
+                   placeholder: 'Title of Award' %>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-sm-6 col-md-6">
+    <div class="form-group">
+      <%= f.select :type_of_award, [['Achievement'], ['Award'],
+                                    ['Special Cases']], {},
+                   { autofocus: true,
+                    class: 'form-control input-lg', placeholder: 'Select one!'}%>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-6 col-md-6">
+    <div class="form-group">
+      <%= f.date_field :date_of_award, autofocus: true,
+                       class: 'form-control input-lg',
+                       placeholder: 'mm/dd/yy' %>
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.text_area :award_description, autofocus: true,
+                  class: 'form-control input-lg', placeholder: 'Describe the Award' %>
+</div>

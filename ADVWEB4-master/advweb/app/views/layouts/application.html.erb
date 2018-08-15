@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= full_title(yield(:title)) %></title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= render 'layouts/shim' %>
+  </head>
+  <% if user_signed_in? %>
+  <div id="wrapper">
+    <%= render 'layouts/side_menu' %>
+    <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+    <body style="background-image: url('http://img.jakpost.net/c/2017/10/16/2017_10_16_34091_1508126152._large.jpg');
+    background-attachment: fixed">
+      <div id="page-content-wrapper">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-12">
+              <%= render 'layouts/messages' %>
+              <%= yield %>
+              <%= render 'layouts/footer' %>
+            </div>
+          </div>
+        </div>
+      </div>
+      </body>
+  <% else %>
+<body style="background-image: url('http://img.jakpost.net/c/2017/10/16/2017_10_16_34091_1508126152._large.jpg');
+    background-attachment: fixed">
+  <%= yield %>
+</body>
+  <% end %>
+    </div>
+</html>
+<%= render 'layouts/script' %>

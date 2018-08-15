@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  profile: one
+  speaker: MyString
+  price: 
+  date_of_training: 2018-04-22
+  type_of_training: MyString
+  certificate: MyString
+
+two:
+  profile: two
+  speaker: MyString
+  price: 
+  date_of_training: 2018-04-22
+  type_of_training: MyString
+  certificate: MyString

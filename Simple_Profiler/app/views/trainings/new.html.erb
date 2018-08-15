@@ -1,0 +1,21 @@
+<% provide(:title, "Training") %>
+<h1>Trainings#new</h1>
+<div class=" row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for @training, url: new_training_path do |f| %>
+      <%= render 'trainings/shared/error_messages' %>
+      <hr class="colorgraph">
+      <div class="form-group center">
+        <img id="img_prev" width=300 height=300 src="#" alt="your image" class="img-thumbnail hidden"/> <br/>
+        <span class="btn btn-default btn-file">
+          <%= f.file_field :certificate, id: 'avatar-upload', autofocus: true %>
+        </span>
+        <%= f.hidden_field :certificate_cache %>
+      </div>
+      <%= render :partial => 'trainings/shared/fields', :locals => { :f => f } %>
+      <div class="row">
+        <div class="col-xs-12 col-md-6"><%= f.submit 'Submit', class: 'btn btn-primary' %></div>
+      </div>
+    <% end %>
+  </div>
+</div>

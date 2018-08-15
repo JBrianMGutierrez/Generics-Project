@@ -1,0 +1,24 @@
+<div id="sidebar-wrapper">
+  <ul class="sidebar-nav">
+    <li class="sidebar-brand">
+      <%= link_to 'Very Awesome Reporting',   root_path %>
+    </li>
+    <li>
+      <%= link_to 'Create a Report',   reports_new_path %>
+    </li>
+    <li>
+      <%= link_to "#{current_user.username} Reports",   user_profile_path %>
+    </li>
+    <li>
+      <%= link_to 'Settings',   edit_user_registration_path %>
+    </li>
+    <li>
+      <%= link_to 'Logout',   destroy_user_session_path, method: :delete %>
+    </li>
+    <% if current_user.is_admin? %>
+      <li>
+        <%= link_to 'List of Accounts',   list_path %>
+      </li>
+    <% end %>
+  </ul>
+</div>

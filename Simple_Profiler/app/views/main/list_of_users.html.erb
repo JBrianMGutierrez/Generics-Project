@@ -1,0 +1,101 @@
+<% provide(:title, "List") %>
+<h1>Main#List of Users Profile</h1>
+  <div class="row">
+    <div class="panel panel-primary filterable">
+      <div class="panel-heading">
+        <h3 class="panel-title">Users</h3>
+        <div class="pull-right">
+          <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover table-striped table-responsive w-auto">
+          <thead>
+          <tr class="filters">
+            <th><input type="text" class="form-control" placeholder="Name" disabled></th>
+            <th><input type="text" class="form-control" placeholder="City" disabled></th>
+            <th><input type="text" class="form-control" placeholder="Age" disabled></th>
+            <th><input type="text" class="form-control" placeholder="Interest" disabled></th>
+            <th><input type="text" class="form-control" placeholder="Main Skill" disabled></th>
+            <th><input type="text" class="form-control" placeholder="Main Hobby" disabled></th>
+            <th><input type="text" class="form-control" placeholder="Gender" disabled></th>
+            <th><input type="text" class="form-control" placeholder="Education" disabled></th>
+            <th><input type="text" class="form-control" placeholder="School" disabled></th>
+            <th><input type="text" class="form-control" placeholder="Actions" disabled></th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @profile.each do |user| %>
+          <tr>
+            <td><%= full_name(user.user.first_name, user.user.last_name) %></td>
+            <td><%= user.location_city %></td>
+            <td><%= age(user.date_of_birth) %> yrs. old</td>
+            <td><%= user.interest %></td>
+            <td><%= user.main_skill %></td>
+            <td><%= user.main_hobby %></td>
+            <td><%= user.gender %></td>
+            <td><%= user.education_status %></td>
+            <td><%= user.education %></td>
+            <% if current_user != user.user %>
+            <td>
+              <%= link_to 'Show' , profile_path(user) %>
+            </td>
+            <% end %>
+          </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+<br>
+<br>
+<br>
+
+<h1>Main#List of Users Account</h1>
+<div class="row">
+  <div class="panel panel-primary filterable">
+    <div class="panel-heading">
+      <h3 class="panel-title">Users</h3>
+      <div class="pull-right">
+        <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-hover table-striped table-responsive">
+        <thead>
+        <tr class="filters">
+          <th><input type="text" class="form-control" placeholder="Name" disabled></th>
+          <th><input type="text" class="form-control" placeholder="Username" disabled></th>
+          <th><input type="text" class="form-control" placeholder="Actions" disabled></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @user.each do |user| %>
+          <tr>
+            <td><%= full_name(user.first_name, user.last_name) %></td>
+            <td><%= user.username %></td>
+            <% if current_user != user %>
+              <td>
+                <%= link_to 'Delete' , user_registration_path(user),
+                            method: :delete %>
+                <% unless user.admin? %>
+                  | <%= link_to 'Make Admin', make_admin_path(user) %>
+                <% else %>
+                  | <%= link_to 'Make User', make_admin_path(user) %>
+                <% end %>
+                <% unless user.approved? %>
+                  | <%= link_to 'Enable Account', approved_path(user) %>
+                <% else %>
+                  | <%= link_to 'Disable Account', approved_path(user) %>
+                <% end %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

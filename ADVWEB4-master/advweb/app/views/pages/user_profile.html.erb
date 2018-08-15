@@ -1,0 +1,17 @@
+<% provide(:title, "User Reports")%>
+<div class="jumbotron" style="background: rgba(245,245,245,0.7)">
+  <h4 class="center" style="color:#272287; text-align: center">R E P O R T S (<%= @user.count %>)</h4>
+  <% if @user.any? %>
+    <% @user.each do |reports|%>
+      <div id = "report-link">
+        <%= link_to report_path(reports) do %>
+          <h3><%= reports.report_title %></h3>
+          <small><%= reports.report_date %></small>
+          <%= reports.report_description%> <br><br>
+        <% end %>
+      </div>
+    <% end %>
+    <%= will_paginate @user %>
+  <% else %>
+  <% end %>
+</div>

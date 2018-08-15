@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  report_title: MyString
+  report_date: 2018-04-12 16:25:05
+  report_title: MyString
+  report_description: MyText
+  report_location: MyString
+  user: one
+
+two:
+  report_title: MyString
+  report_date: 2018-04-12 16:25:05
+  report_title: MyString
+  report_description: MyText
+  report_location: MyString
+  user: two

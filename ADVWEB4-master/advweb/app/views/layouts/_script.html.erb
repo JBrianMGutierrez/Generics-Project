@@ -1,0 +1,18 @@
+<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    $(document).ready(function() {
+        $('#found_site').on('change', function() {
+            $(this).val() == "other" ? $('#specify').closest('.form-group').show() : $('#specify').closest('.form-group').hide();
+        })
+    })
+
+    $(function () {
+        $('#datetimepicker1').datetimepicker({
+            format:'DD/MM/YYYY HH:mm',
+        });
+    });
+</script>
