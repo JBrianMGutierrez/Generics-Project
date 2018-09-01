@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Enemy
   - Lava
+  - Lava
+  - Stage
+  - key
   layers:
   - Default
   - TransparentFX

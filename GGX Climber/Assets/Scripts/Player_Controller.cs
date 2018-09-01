@@ -5,9 +5,6 @@ using UnityEngine;
 public class Player_Controller : MonoBehaviour {
 	
 	Rigidbody rb;
-	Recovery stand;
-	public Animator anim;
-	[HideInInspector] public CapsuleCollider cc;
 	[HideInInspector] public bool isDead = false;
 	[HideInInspector] public bool isGrounded = false;
 
@@ -15,14 +12,13 @@ public class Player_Controller : MonoBehaviour {
 	public float resistance = 10;
 	public float jumpHeight = 5;
 	public float forwardSpeed = 5;
-
+	public float backwardSpeed = 10;
+    public float amount = 30f;
 
 	// Use this for initialization
 	void Start ()
 	{
-		rb = GetComponent<Rigidbody>();
-		cc = GetComponent<CapsuleCollider>();
-		stand = GetComponent<Recovery>();
+        rb = GetComponent<Rigidbody>();
 	}
 
 	// Update is called once per frame
@@ -34,32 +30,35 @@ public class Player_Controller : MonoBehaviour {
 			{
 				Jump();
 			}
-			if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
+			if (Input.GetKey(KeyCode.W))
 			{
 				rb.AddForce(new Vector3(transform.forward.x, 0, transform.forward.z) * forwardSpeed);
 			}
-			if(Input.GetKey(KeyCode.D))
-			{        
-				transform.Rotate(new Vector3(-rotationSpeed, 0, 0));
-			}
-			if(Input.GetKey(KeyCode.A))
+			if (Input.GetKey (KeyCode.S))
 			{
-				transform.Rotate(new Vector3(rotationSpeed, 0, 0));
-			}
+				//rb.AddForce(new Vector3(-transform.forward.x, 0, -transform.forward.z) * backwardSpeed);
+                rb.AddForce(-rb.velocity * backwardSpeed);
+            }
+
 		}
+    }
+
+    void FixedUpdate()
+    {
+        if (Input.GetKey(KeyCode.D))
+        {
+
+            transform.Rotate(new Vector3(-rotationSpeed, 0, 0));
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            transform.Rotate(new Vector3(rotationSpeed, 0, 0));
+        }
     }
 
     void OnCollisionEnter(Collision col)
 	{
-        isGrounded = true;
-		if (col.relativeVelocity.magnitude > resistance)
-		{
-			cc.enabled = false;
-            isDead = true;
-			rb.constraints = RigidbodyConstraints.None;
-			anim.SetBool("Stun", true);
-			stand.StandUp();
-		}
+		isGrounded = true;
 	}
 
 	void Jump()

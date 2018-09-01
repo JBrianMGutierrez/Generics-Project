@@ -7,13 +7,13 @@ public class Recovery : MonoBehaviour
 	public Animator original;
 	public Transform target;
 	Rigidbody rb;
-	Player_Controller playerController;
+	Respawner playerController;
 	Quaternion oldRotation;
 	float waitingTime = 5.0f;
 	// Use this for initialization
 	void Start ()
 	{
-		playerController = GetComponent<Player_Controller> ();
+		playerController = GetComponent<Respawner> ();
 		rb = GetComponent<Rigidbody>();
 	}
 	

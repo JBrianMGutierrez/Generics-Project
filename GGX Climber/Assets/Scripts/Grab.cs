@@ -7,7 +7,7 @@ public class Grab : MonoBehaviour {
 	public float force = 4000;
 	BoxCollider bc;
     SpringJoint sp;
-    bool grabbed = false;
+    public bool grabbed = false;
     // Use this for initialization
     void Start ()
     {
@@ -17,23 +17,17 @@ public class Grab : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-
+		if (grabbed && Input.GetMouseButtonDown (0)) {
+			Destroy (sp);
+			Debug.Log ("I Release");
+			grabbed = false;
+			bc.isTrigger = false;
+		}
     }
 
-    void LateUpdate()
-    {
-        if (grabbed && Input.GetMouseButtonDown(1))
-        {
-            Debug.Log("I Release");
-            Destroy(sp);
-            grabbed = false;
-            bc.isTrigger = false;
-        }
-    }
-
-    void OnCollisionEnter(Collision col)
+    void OnCollisionStay(Collision col)
 	{
-        if (!grabbed && Input.GetKey(KeyCode.F))
+		if (!grabbed && Input.GetKeyUp (KeyCode.F))
         {
             Debug.Log("I Grabbed");
             sp = gameObject.AddComponent<SpringJoint> ();

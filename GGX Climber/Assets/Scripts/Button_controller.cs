@@ -14,4 +14,14 @@ public class Button_controller : MonoBehaviour {
 	{
 		Application.Quit ();
 	}
+
+	public void RestartGame()
+	{
+		SceneManager.LoadScene("DevelopmentScene");
+	}
+
+	public void ExitMenu()
+	{
+		SceneManager.LoadScene ("TitleScreen");
+	}
 }
